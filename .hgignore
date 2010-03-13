@@ -1,0 +1,4 @@
+glob:*Resharper*
+glob:bin
+glob:Bin
+glob:*.suo
