@@ -1,4 +1,4 @@
-glob:*Resharper*
+glob:*ReSharper*
 glob:bin
 glob:Bin
 glob:*.suo
