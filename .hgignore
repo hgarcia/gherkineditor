@@ -1,4 +1,6 @@
 glob:*ReSharper*
 glob:bin
+glob:obj
+glob:Obj
 glob:Bin
 glob:*.suo
