@@ -4,3 +4,4 @@ glob:obj
 glob:Obj
 glob:Bin
 glob:*.suo
+glob:releases
