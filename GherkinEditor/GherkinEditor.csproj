@@ -5,8 +5,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>AvalonEdit.Sample</RootNamespace>
-    <AssemblyName>AvalonEdit.Sample</AssemblyName>
+    <RootNamespace>GherkinEditor</RootNamespace>
+    <AssemblyName>GherkinEditor</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <OutputPath>..\bin\$(Configuration)\</OutputPath>
