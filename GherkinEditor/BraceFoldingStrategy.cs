@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Folding;
 
-namespace AvalonEdit.Sample
+namespace GherkinEditor
 {
 	/// <summary>
 	/// Allows producing foldings from a document based on braces.

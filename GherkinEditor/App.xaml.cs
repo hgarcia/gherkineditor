@@ -22,7 +22,7 @@ using System.Data;
 using System.Xml;
 using System.Configuration;
 
-namespace AvalonEdit.Sample
+namespace GherkinEditor
 {
 	/// <summary>
 	/// Interaction logic for App.xaml
