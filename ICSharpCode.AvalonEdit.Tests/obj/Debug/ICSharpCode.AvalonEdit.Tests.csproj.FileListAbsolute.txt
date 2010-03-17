@@ -1,7 +1,0 @@
-C:\Development\Code\Net3.5\Gherkin_Editor\AvalonEdit_Source\bin\Debug\ICSharpCode.AvalonEdit.shfb
-C:\Development\Code\Net3.5\Gherkin_Editor\AvalonEdit_Source\bin\Debug\ICSharpCode.AvalonEdit.Tests.dll.config
-C:\Development\Code\Net3.5\Gherkin_Editor\AvalonEdit_Source\bin\Debug\ICSharpCode.AvalonEdit.Tests.dll
-C:\Development\Code\Net3.5\Gherkin_Editor\AvalonEdit_Source\bin\Debug\ICSharpCode.AvalonEdit.Tests.pdb
-C:\Development\Code\Net3.5\Gherkin_Editor\AvalonEdit_Source\ICSharpCode.AvalonEdit.Tests\obj\Debug\ResolveAssemblyReference.cache
-C:\Development\Code\Net3.5\Gherkin_Editor\AvalonEdit_Source\ICSharpCode.AvalonEdit.Tests\obj\Debug\ICSharpCode.AvalonEdit.Tests.dll
-C:\Development\Code\Net3.5\Gherkin_Editor\AvalonEdit_Source\ICSharpCode.AvalonEdit.Tests\obj\Debug\ICSharpCode.AvalonEdit.Tests.pdb
