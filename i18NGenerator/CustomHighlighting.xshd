@@ -1,0 +1,926 @@
+<?xml version="1.0"?>
+<SyntaxDefinition name="Custom Highlighting" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+	<Color name="Comment" foreground="Green" />
+	<Color name="String" foreground="Blue" />
+	
+	<!-- This is the main ruleset. -->
+	<RuleSet>
+		<Span color="Comment" begin="//" />
+		<Span color="Comment" multiline="true" begin="/\*" end="\*/" />
+		
+		<Span color="String">
+			<Begin>"</Begin>
+			<End>"</End>
+			<RuleSet>
+				<!-- nested span for escape sequences -->
+				<Span begin="\\" end="." />
+			</RuleSet>
+		</Span>
+		
+		<Keywords fontWeight="bold" foreground="Blue">
+			
+			<Word>배경</Word>
+			
+			<Word>기능</Word>
+			
+			<Word>背景</Word>
+			
+			<Word>機能</Word>
+			
+			<Word>功能</Word>
+			
+			<Word>フィーチャ</Word>
+			
+			<Word>خاصية</Word>
+			
+			<Word>الخلفية</Word>
+			
+			<Word>תכונה</Word>
+			
+			<Word>רקע</Word>
+			
+			<Word>Функціонал</Word>
+			
+			<Word>Функционалност</Word>
+			
+			<Word>Функционал</Word>
+			
+			<Word>Фича</Word>
+			
+			<Word>Тарих</Word>
+			
+			<Word>Предыстория</Word>
+			
+			<Word>Предистория</Word>
+			
+			<Word>Позадина</Word>
+			
+			<Word>Передумова</Word>
+			
+			<Word>Особина</Word>
+			
+			<Word>Основа</Word>
+			
+			<Word>Могућност</Word>
+			
+			<Word>Контекст</Word>
+			
+			<Word>Özellik</Word>
+			
+			<Word>Założenia</Word>
+			
+			<Word>Właściwość</Word>
+			
+			<Word>Tính năng</Word>
+			
+			<Word>Trajto</Word>
+			
+			<Word>Tausta</Word>
+			
+			<Word>Taust</Word>
+			
+			<Word>Situācija</Word>
+			
+			<Word>Savybė</Word>
+			
+			<Word>Rerefons</Word>
+			
+			<Word>Požiadavka</Word>
+			
+			<Word>Požadavek</Word>
+			
+			<Word>Pozadí</Word>
+			
+			<Word>Pozadina</Word>
+			
+			<Word>Pozadie</Word>
+			
+			<Word>Osobina</Word>
+			
+			<Word>Osnova</Word>
+			
+			<Word>Ominaisuus</Word>
+			
+			<Word>Omadus</Word>
+			
+			<Word>OH HAI</Word>
+			
+			<Word>Mogućnost</Word>
+			
+			<Word>Mogucnost</Word>
+			
+			<Word>Kontext</Word>
+			
+			<Word>Konteksts</Word>
+			
+			<Word>Kontekstas</Word>
+			
+			<Word>Kontekst</Word>
+			
+			<Word>Jellemző</Word>
+			
+			<Word>Háttér</Word>
+			
+			<Word>Grundlage</Word>
+			
+			<Word>Geçmiş</Word>
+			
+			<Word>Fīča</Word>
+			
+			<Word>Funzionalità</Word>
+			
+			<Word>Funktionalität</Word>
+			
+			<Word>Funkcionalnost</Word>
+			
+			<Word>Funkcionalitāte</Word>
+			
+			<Word>Funcționalitate</Word>
+			
+			<Word>Functionaliteit</Word>
+			
+			<Word>Functionalitate</Word>
+			
+			<Word>Funcionalitat</Word>
+			
+			<Word>Funcionalidade</Word>
+			
+			<Word>Fono</Word>
+			
+			<Word>Fonctionnalité</Word>
+			
+			<Word>Fitur</Word>
+			
+			<Word>Feature</Word>
+			
+			<Word>Egenskap</Word>
+			
+			<Word>Egenskab</Word>
+			
+			<Word>Dis is what went down</Word>
+			
+			<Word>Dasar</Word>
+			
+			<Word>Crikey</Word>
+			
+			<Word>Contexto</Word>
+			
+			<Word>Contexte</Word>
+			
+			<Word>Contesto</Word>
+			
+			<Word>Condiţii</Word>
+			
+			<Word>Conditii</Word>
+			
+			<Word>Cefndir</Word>
+			
+			<Word>Característica</Word>
+			
+			<Word>Bối cảnh</Word>
+			
+			<Word>Bakgrunn</Word>
+			
+			<Word>Bakgrund</Word>
+			
+			<Word>Baggrund</Word>
+			
+			<Word>Background</Word>
+			
+			<Word>B4</Word>
+			
+			<Word>Arwedd</Word>
+			
+			<Word>Antecedents</Word>
+			
+			<Word>Antecedentes</Word>
+			
+			<Word>Achtergrond</Word>
+			
+		</Keywords>
+
+        <Keywords fontWeight ="normal" fontStyle="italic" foreground="Black">
+			
+			<Word>시나리오 개요</Word>
+			
+			<Word>시나리오</Word>
+			
+			<Word>場景大綱</Word>
+			
+			<Word>場景</Word>
+			
+			<Word>场景大纲</Word>
+			
+			<Word>场景</Word>
+			
+			<Word>劇本大綱</Word>
+			
+			<Word>劇本</Word>
+			
+			<Word>テンプレ</Word>
+			
+			<Word>シナリオテンプレート</Word>
+			
+			<Word>シナリオテンプレ</Word>
+			
+			<Word>シナリオアウトライン</Word>
+			
+			<Word>シナリオ</Word>
+			
+			<Word>سيناريو مخطط</Word>
+			
+			<Word>سيناريو</Word>
+			
+			<Word>תרחיש</Word>
+			
+			<Word>תבנית תרחיש</Word>
+			
+			<Word>Сценарій</Word>
+			
+			<Word>Сценарио</Word>
+			
+			<Word>Сценарий структураси</Word>
+			
+			<Word>Сценарий</Word>
+			
+			<Word>Структура сценарію</Word>
+			
+			<Word>Структура сценарија</Word>
+			
+			<Word>Структура сценария</Word>
+			
+			<Word>Скица</Word>
+			
+			<Word>Рамка на сценарий</Word>
+			
+			<Word>Пример</Word>
+			
+			<Word>Концепт</Word>
+			
+			<Word>Wharrimean is</Word>
+			
+			<Word>Tình huống</Word>
+			
+			<Word>The thing of it is</Word>
+			
+			<Word>Tapausaihio</Word>
+			
+			<Word>Tapaus</Word>
+			
+			<Word>Szenariogrundriss</Word>
+			
+			<Word>Szenario</Word>
+			
+			<Word>Szablon scenariusza</Word>
+			
+			<Word>Stsenaarium</Word>
+			
+			<Word>Struktura scenarija</Word>
+			
+			<Word>Skica</Word>
+			
+			<Word>Skenario konsep</Word>
+			
+			<Word>Skenario</Word>
+			
+			<Word>Senaryo taslağı</Word>
+			
+			<Word>Senaryo</Word>
+			
+			<Word>Scénář</Word>
+			
+			<Word>Scénario</Word>
+			
+			<Word>Schema dello scenario</Word>
+			
+			<Word>Scenārijs pēc parauga</Word>
+			
+			<Word>Scenārijs</Word>
+			
+			<Word>Scenár</Word>
+			
+			<Word>Scenaro</Word>
+			
+			<Word>Scenariusz</Word>
+			
+			<Word>Scenariul de şablon</Word>
+			
+			<Word>Scenariul de sablon</Word>
+			
+			<Word>Scenariu</Word>
+			
+			<Word>Scenario Outline</Word>
+			
+			<Word>Scenario Amlinellol</Word>
+			
+			<Word>Scenario</Word>
+			
+			<Word>Scenarijus</Word>
+			
+			<Word>Scenarijaus šablonas</Word>
+			
+			<Word>Scenarij</Word>
+			
+			<Word>Scenarie</Word>
+			
+			<Word>Raamstsenaarium</Word>
+			
+			<Word>Primer</Word>
+			
+			<Word>Plan du scénario</Word>
+			
+			<Word>Plan du Scénario</Word>
+			
+			<Word>Osnova scénáře</Word>
+			
+			<Word>Náčrt Scénáře</Word>
+			
+			<Word>Náčrt Scenáru</Word>
+			
+			<Word>Mate</Word>
+			
+			<Word>MISHUN SRSLY</Word>
+			
+			<Word>MISHUN</Word>
+			
+			<Word>Kịch bản</Word>
+			
+			<Word>Konturo de la scenaro</Word>
+			
+			<Word>Koncept</Word>
+			
+			<Word>Khung tình huống</Word>
+			
+			<Word>Khung kịch bản</Word>
+			
+			<Word>Forgatókönyv vázlat</Word>
+			
+			<Word>Forgatókönyv</Word>
+			
+			<Word>Esquema do Cenário</Word>
+			
+			<Word>Esquema do Cenario</Word>
+			
+			<Word>Esquema del escenario</Word>
+			
+			<Word>Esquema de l'escenari</Word>
+			
+			<Word>Escenario</Word>
+			
+			<Word>Escenari</Word>
+			
+			<Word>Cenário</Word>
+			
+			<Word>Cenario</Word>
+			
+			<Word>Blokes</Word>
+			
+			<Word>All y'all</Word>
+			
+			<Word>Abstrakt Scenario</Word>
+			
+			<Word>Abstract Scenario</Word>
+			
+        </Keywords>
+		
+		<Keywords fontWeight="bold" fontStyle="normal" foreground="Black">
+			
+			<Word>하지만</Word>
+			
+			<Word>조건</Word>
+			
+			<Word>예</Word>
+			
+			<Word>먼저</Word>
+			
+			<Word>만일</Word>
+			
+			<Word>만약</Word>
+			
+			<Word>단</Word>
+			
+			<Word>그리고</Word>
+			
+			<Word>그러면</Word>
+			
+			<Word>那麼</Word>
+			
+			<Word>那么</Word>
+			
+			<Word>而且</Word>
+			
+			<Word>當</Word>
+			
+			<Word>当</Word>
+			
+			<Word>前提</Word>
+			
+			<Word>假設</Word>
+			
+			<Word>假如</Word>
+			
+			<Word>例子</Word>
+			
+			<Word>例</Word>
+			
+			<Word>但是</Word>
+			
+			<Word>但し</Word>
+			
+			<Word>並且</Word>
+			
+			<Word>サンプル</Word>
+			
+			<Word>もし</Word>
+			
+			<Word>ならば</Word>
+			
+			<Word>ただし</Word>
+			
+			<Word>しかし</Word>
+			
+			<Word>かつ</Word>
+			
+			<Word>و</Word>
+			
+			<Word>متى</Word>
+			
+			<Word>لكن</Word>
+			
+			<Word>عندما</Word>
+			
+			<Word>ثم</Word>
+			
+			<Word>بفرض</Word>
+			
+			<Word>امثلة</Word>
+			
+			<Word>اذاً</Word>
+			
+			<Word>כאשר</Word>
+			
+			<Word>וגם</Word>
+			
+			<Word>דוגמאות</Word>
+			
+			<Word>בהינתן</Word>
+			
+			<Word>אזי</Word>
+			
+			<Word>אז</Word>
+			
+			<Word>אבל</Word>
+			
+			<Word>Якщо</Word>
+			
+			<Word>Унда</Word>
+			
+			<Word>То</Word>
+			
+			<Word>Сценарији</Word>
+			
+			<Word>Припустимо, що</Word>
+			
+			<Word>Припустимо</Word>
+			
+			<Word>Примери</Word>
+			
+			<Word>Приклади</Word>
+			
+			<Word>Онда</Word>
+			
+			<Word>Но</Word>
+			
+			<Word>Нехай</Word>
+			
+			<Word>Мисоллар</Word>
+			
+			<Word>Лекин</Word>
+			
+			<Word>Когато</Word>
+			
+			<Word>Када</Word>
+			
+			<Word>Кад</Word>
+			
+			<Word>К тому же</Word>
+			
+			<Word>И</Word>
+			
+			<Word>Значения</Word>
+			
+			<Word>Задато</Word>
+			
+			<Word>Задати</Word>
+			
+			<Word>Задате</Word>
+			
+			<Word>Если</Word>
+			
+			<Word>Допустим</Word>
+			
+			<Word>Дадено</Word>
+			
+			<Word>Ва</Word>
+			
+			<Word>Бирок</Word>
+			
+			<Word>Аммо</Word>
+			
+			<Word>Али</Word>
+			
+			<Word>Але</Word>
+			
+			<Word>Агар</Word>
+			
+			<Word>А</Word>
+			
+			<Word>І</Word>
+			
+			<Word>Și</Word>
+			
+			<Word>Örnekler</Word>
+			
+			<Word>És</Word>
+			
+			<Word>Zatati</Word>
+			
+			<Word>Zakładając</Word>
+			
+			<Word>Zadato</Word>
+			
+			<Word>Zadate</Word>
+			
+			<Word>Zadano</Word>
+			
+			<Word>Zadani</Word>
+			
+			<Word>Zadan</Word>
+			
+			<Word>Youse know when youse got</Word>
+			
+			<Word>Youse know like when</Word>
+			
+			<Word>Yna</Word>
+			
+			<Word>Ya know how</Word>
+			
+			<Word>Ya gotta</Word>
+			
+			<Word>Y</Word>
+			
+			<Word>Wun</Word>
+			
+			<Word>Wtedy</Word>
+			
+			<Word>When y'all</Word>
+			
+			<Word>When</Word>
+			
+			<Word>Wenn</Word>
+			
+			<Word>WEN</Word>
+			
+			<Word>Và</Word>
+			
+			<Word>Voorbeelden</Word>
+			
+			<Word>Ve</Word>
+			
+			<Word>Variantai</Word>
+			
+			<Word>Und</Word>
+			
+			<Word>Un</Word>
+			
+			<Word>Thì</Word>
+			
+			<Word>Then y'all</Word>
+			
+			<Word>Then</Word>
+			
+			<Word>Tapi</Word>
+			
+			<Word>Tapaukset</Word>
+			
+			<Word>Tak</Word>
+			
+			<Word>Tada</Word>
+			
+			<Word>Tad</Word>
+			
+			<Word>Så</Word>
+			
+			<Word>Stel</Word>
+			
+			<Word>Soit</Word>
+			
+			<Word>Siis</Word>
+			
+			<Word>Si</Word>
+			
+			<Word>Sed</Word>
+			
+			<Word>Se</Word>
+			
+			<Word>Scenarios</Word>
+			
+			<Word>Scenariji</Word>
+			
+			<Word>Scenarijai</Word>
+			
+			<Word>Quando</Word>
+			
+			<Word>Quand</Word>
+			
+			<Word>Quan</Word>
+			
+			<Word>Příklady</Word>
+			
+			<Word>Példák</Word>
+			
+			<Word>Príklady</Word>
+			
+			<Word>Przykłady</Word>
+			
+			<Word>Pryd</Word>
+			
+			<Word>Primjeri</Word>
+			
+			<Word>Primeri</Word>
+			
+			<Word>Pokud</Word>
+			
+			<Word>Pokiaľ</Word>
+			
+			<Word>Piemēri</Word>
+			
+			<Word>Però</Word>
+			
+			<Word>Pero</Word>
+			
+			<Word>Pavyzdžiai</Word>
+			
+			<Word>Paraugs</Word>
+			
+			<Word>Pak</Word>
+			
+			<Word>Oraz</Word>
+			
+			<Word>Onda</Word>
+			
+			<Word>Ond</Word>
+			
+			<Word>Oletetaan</Word>
+			
+			<Word>Og</Word>
+			
+			<Word>Och</Word>
+			
+			<Word>O zaman</Word>
+			
+			<Word>Når</Word>
+			
+			<Word>När</Word>
+			
+			<Word>Niin</Word>
+			
+			<Word>Nhưng</Word>
+			
+			<Word>N</Word>
+			
+			<Word>Mutta</Word>
+			
+			<Word>Men</Word>
+			
+			<Word>Mas</Word>
+			
+			<Word>Maka</Word>
+			
+			<Word>Majd</Word>
+			
+			<Word>Mais</Word>
+			
+			<Word>Maar</Word>
+			
+			<Word>Ma</Word>
+			
+			<Word>Lorsque</Word>
+			
+			<Word>Lorsqu'</Word>
+			
+			<Word>Kun</Word>
+			
+			<Word>Kuid</Word>
+			
+			<Word>Kui</Word>
+			
+			<Word>Khi</Word>
+			
+			<Word>Keď</Word>
+			
+			<Word>Ketika</Word>
+			
+			<Word>Když</Word>
+			
+			<Word>Kaj</Word>
+			
+			<Word>Kai</Word>
+			
+			<Word>Kada</Word>
+			
+			<Word>Kad</Word>
+			
+			<Word>Juhtumid</Word>
+			
+			<Word>Jeżeli</Word>
+			
+			<Word>Ja</Word>
+			
+			<Word>Ir</Word>
+			
+			<Word>I CAN HAZ</Word>
+			
+			<Word>I</Word>
+			
+			<Word>Ha</Word>
+			
+			<Word>Givun</Word>
+			
+			<Word>Givet</Word>
+			
+			<Word>Given y'all</Word>
+			
+			<Word>Given</Word>
+			
+			<Word>Gitt</Word>
+			
+			<Word>Gegeven</Word>
+			
+			<Word>Gegeben sei</Word>
+			
+			<Word>Fakat</Word>
+			
+			<Word>Eğer ki</Word>
+			
+			<Word>Exemplos</Word>
+			
+			<Word>Exemples</Word>
+			
+			<Word>Exemplele</Word>
+			
+			<Word>Exempel</Word>
+			
+			<Word>Examples</Word>
+			
+			<Word>Etant donné</Word>
+			
+			<Word>Et</Word>
+			
+			<Word>Esempi</Word>
+			
+			<Word>Então</Word>
+			
+			<Word>Entonces</Word>
+			
+			<Word>Entao</Word>
+			
+			<Word>Enghreifftiau</Word>
+			
+			<Word>En</Word>
+			
+			<Word>Ekzemploj</Word>
+			
+			<Word>Eksempler</Word>
+			
+			<Word>Ejemplos</Word>
+			
+			<Word>Eeldades</Word>
+			
+			<Word>EXAMPLZ</Word>
+			
+			<Word>E</Word>
+			
+			<Word>Dữ liệu</Word>
+			
+			<Word>Duota</Word>
+			
+			<Word>Dun</Word>
+			
+			<Word>Donitaĵo</Word>
+			
+			<Word>Donat</Word>
+			
+			<Word>Donada</Word>
+			
+			<Word>Do</Word>
+			
+			<Word>Diyelim ki</Word>
+			
+			<Word>Dengan</Word>
+			
+			<Word>Den youse gotta</Word>
+			
+			<Word>De</Word>
+			
+			<Word>Dato</Word>
+			
+			<Word>Dar</Word>
+			
+			<Word>Dann</Word>
+			
+			<Word>Dan</Word>
+			
+			<Word>Dado</Word>
+			
+			<Word>Dacă</Word>
+			
+			<Word>Daca</Word>
+			
+			<Word>DEN</Word>
+			
+			<Word>Când</Word>
+			
+			<Word>Cuando</Word>
+			
+			<Word>Contoh</Word>
+			
+			<Word>Cobber</Word>
+			
+			<Word>Cho</Word>
+			
+			<Word>Cept</Word>
+			
+			<Word>Cand</Word>
+			
+			<Word>Cal</Word>
+			
+			<Word>But y'all</Word>
+			
+			<Word>But</Word>
+			
+			<Word>Buh</Word>
+			
+			<Word>Biết</Word>
+			
+			<Word>Bet</Word>
+			
+			<Word>Beispiele</Word>
+			
+			<Word>BUT</Word>
+			
+			<Word>Atès</Word>
+			
+			<Word>Atunci</Word>
+			
+			<Word>Atesa</Word>
+			
+			<Word>Anrhegedig a</Word>
+			
+			<Word>Angenommen</Word>
+			
+			<Word>And y'all</Word>
+			
+			<Word>And</Word>
+			
+			<Word>An</Word>
+			
+			<Word>Ama</Word>
+			
+			<Word>Als</Word>
+			
+			<Word>Alors</Word>
+			
+			<Word>Allora</Word>
+			
+			<Word>Ali</Word>
+			
+			<Word>Aleshores</Word>
+			
+			<Word>Ale</Word>
+			
+			<Word>Akkor</Word>
+			
+			<Word>Aber</Word>
+			
+			<Word>AN</Word>
+			
+			<Word>A také</Word>
+			
+			<Word>A</Word>
+			
+			<Word>\*</Word>
+			
+		</Keywords>
+
+		<!-- Digits -->
+        <!-- Rule foreground="DarkBlue">
+            \b0[xX][0-9a-fA-F]+  # hex number
+        |    \b
+            (    \d+(\.[0-9]+)?   #number with optional floating point
+            |    \.[0-9]+         #or just starting with floating point
+            )
+            ([eE][+-]?[0-9]+)? # optional exponent
+        </Rule -->
+	</RuleSet>
+</SyntaxDefinition>
