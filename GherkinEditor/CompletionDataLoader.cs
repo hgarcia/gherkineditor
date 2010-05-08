@@ -135,7 +135,7 @@ namespace GherkinEditor
                                                             new GherkinCompletionItem("And "),
                                                             new GherkinCompletionItem("But "),
                                                             new GherkinCompletionItem("Scenario Outline"),
-                                                            new GherkinCompletionItem("ExamplesScenarios"),
+                                                            new GherkinCompletionItem("Examples"),
                                                             new GherkinCompletionItem("Background")                                                            
                                                         });
             
@@ -300,7 +300,7 @@ namespace GherkinEditor
                                                             new GherkinCompletionItem("I "),
                                                             new GherkinCompletionItem("Ali "),
                                                             new GherkinCompletionItem("SkicaKoncept"),
-                                                            new GherkinCompletionItem("PrimjeriScenariji"),
+                                                            new GherkinCompletionItem("Primjeri"),
                                                             new GherkinCompletionItem("Pozadina")                                                            
                                                         });
             
@@ -360,7 +360,7 @@ namespace GherkinEditor
                                                             new GherkinCompletionItem("かつ"),
                                                             new GherkinCompletionItem("しかし"),
                                                             new GherkinCompletionItem("シナリオアウトラインシナリオテンプレートテンプレシナリオテンプレ"),
-                                                            new GherkinCompletionItem("例サンプル"),
+                                                            new GherkinCompletionItem("例"),
                                                             new GherkinCompletionItem("背景")                                                            
                                                         });
             
@@ -390,7 +390,7 @@ namespace GherkinEditor
                                                             new GherkinCompletionItem("Ir "),
                                                             new GherkinCompletionItem("Bet "),
                                                             new GherkinCompletionItem("Scenarijaus šablonas"),
-                                                            new GherkinCompletionItem("PavyzdžiaiScenarijaiVariantai"),
+                                                            new GherkinCompletionItem("Pavyzdžiai"),
                                                             new GherkinCompletionItem("Kontekstas")                                                            
                                                         });
             
@@ -405,7 +405,7 @@ namespace GherkinEditor
                                                             new GherkinCompletionItem("Un "),
                                                             new GherkinCompletionItem("Bet "),
                                                             new GherkinCompletionItem("Scenārijs pēc parauga"),
-                                                            new GherkinCompletionItem("PiemēriParaugs"),
+                                                            new GherkinCompletionItem("Piemēri"),
                                                             new GherkinCompletionItem("KontekstsSituācija")                                                            
                                                         });
             
@@ -540,7 +540,7 @@ namespace GherkinEditor
                                                             new GherkinCompletionItem("И "),
                                                             new GherkinCompletionItem("Али "),
                                                             new GherkinCompletionItem("Структура сценаријаСкицаКонцепт"),
-                                                            new GherkinCompletionItem("ПримериСценарији"),
+                                                            new GherkinCompletionItem("Примери"),
                                                             new GherkinCompletionItem("КонтекстОсноваПозадина")                                                            
                                                         });
             
@@ -555,7 +555,7 @@ namespace GherkinEditor
                                                             new GherkinCompletionItem("I "),
                                                             new GherkinCompletionItem("Ali "),
                                                             new GherkinCompletionItem("Struktura scenarijaSkicaKoncept"),
-                                                            new GherkinCompletionItem("PrimeriScenariji"),
+                                                            new GherkinCompletionItem("Primeri"),
                                                             new GherkinCompletionItem("KontekstOsnovaPozadina")                                                            
                                                         });
             
@@ -669,7 +669,9 @@ namespace GherkinEditor
         public void LoadDataInto(IList<ICompletionData> data, Language language)
         {
             _completionDataByLanguage[language]
-                .ToList().ForEach(data.Add);
+                .ToList()
+                .ForEach(data.Add);
+            data.OrderBy(x => x.Text);
         }
     }
 }
