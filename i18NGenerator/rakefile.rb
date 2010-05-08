@@ -19,8 +19,8 @@ namespace :generate do
 		require 'gherkin/i18n'
 		require 'erb'
 		
-		i18n = Gherkin::I18n.new("en")
-		puts i18n.keywords(:when)[1]
+		i18n = Gherkin::I18n.new("es")
+		puts i18n.keywords(:examples)[0]
 	end
 
 	task :codecomp do

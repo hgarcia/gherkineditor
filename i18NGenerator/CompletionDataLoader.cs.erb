@@ -30,7 +30,7 @@ namespace GherkinEditor
                                                             new GherkinCompletionItem("<%= i18n.keywords(:and)[1]%>"),
                                                             new GherkinCompletionItem("<%= i18n.keywords(:but)[1]%>"),
                                                             new GherkinCompletionItem("<%= i18n.keywords(:scenario_outline)%>"),
-                                                            new GherkinCompletionItem("<%= i18n.keywords(:examples)%>"),
+                                                            new GherkinCompletionItem("<%= i18n.keywords(:examples)[0]%>"),
                                                             new GherkinCompletionItem("<%= i18n.keywords(:background)%>")                                                            
                                                         });
             <% end %>
@@ -39,7 +39,9 @@ namespace GherkinEditor
         public void LoadDataInto(IList<ICompletionData> data, Language language)
         {
             _completionDataByLanguage[language]
-                .ToList().ForEach(data.Add);
+                .ToList()
+                .ForEach(data.Add);
+            data.OrderBy(x => x.Text);
         }
     }
 }
