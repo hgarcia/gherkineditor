@@ -1,0 +1,45 @@
+using System.Collections.Generic;
+using ICSharpCode.AvalonEdit.CodeCompletion;
+using System.Linq;
+
+namespace GherkinEditor
+{
+    public class CompletionDataLoader
+    {
+        private readonly Languages _langs;
+        private IDictionary<Language, IList<ICompletionData>> _completionDataByLanguage;
+
+        public CompletionDataLoader()
+        {
+            _langs =  new Languages();
+            LoadCompletionData();
+        }
+
+        private void LoadCompletionData()
+        {
+        	_completionDataByLanguage =  new Dictionary<Language, IList<ICompletionData>>();
+        	<% langs.map do |lang| %>
+            _completionDataByLanguage.Add(_langs.GetByIso("<%= lang.iso_code %>"),new List<ICompletionData>
+                                                        {
+                                                        	<% i18n = Gherkin::I18n.new(lang.iso_code) %>
+                                                            new GherkinCompletionItem("<%= i18n.keywords(:scenario)%>"),
+                                                            new GherkinCompletionItem("<%= i18n.keywords(:feature)%>"),
+                                                            new GherkinCompletionItem("<%= i18n.keywords(:when)[1]%>"),
+                                                            new GherkinCompletionItem("<%= i18n.keywords(:then)[1]%>"),
+                                                            new GherkinCompletionItem("<%= i18n.keywords(:given)[1]%>"),
+                                                            new GherkinCompletionItem("<%= i18n.keywords(:and)[1]%>"),
+                                                            new GherkinCompletionItem("<%= i18n.keywords(:but)[1]%>"),
+                                                            new GherkinCompletionItem("<%= i18n.keywords(:scenario_outline)%>"),
+                                                            new GherkinCompletionItem("<%= i18n.keywords(:examples)%>"),
+                                                            new GherkinCompletionItem("<%= i18n.keywords(:background)%>")                                                            
+                                                        });
+            <% end %>
+        }
+
+        public void LoadDataInto(IList<ICompletionData> data, Language language)
+        {
+            _completionDataByLanguage[language]
+                .ToList().ForEach(data.Add);
+        }
+    }
+}

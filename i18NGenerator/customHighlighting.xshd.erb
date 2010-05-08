@@ -16,20 +16,20 @@
 				<Span begin="\\" end="." />
 			</RuleSet>
 		</Span>
-		
-		<Keywords fontWeight="bold" foreground="Blue">
+        <!-- Features -->
+        <Keywords fontWeight="bold" fontStyle="italic" foreground="Blue">
 			<% keywords.split(/\|/).map do |keyword| %>
 			<Word><%= keyword.strip %></Word>
 			<% end %>
 		</Keywords>
-
-        <Keywords fontWeight ="normal" fontStyle="italic" foreground="Black">
+        <!-- Scenario -->
+        <Keywords fontWeight ="bold" fontStyle="italic" foreground="Blue">
 			<% scenarios.split(/\|/).map do |scenario| %>
 			<Word><%= scenario.strip %></Word>
 			<% end %>
         </Keywords>
-		
-		<Keywords fontWeight="bold" fontStyle="normal" foreground="Black">
+
+        <Keywords fontWeight="bold" fontStyle="normal" foreground="Blue">
 			<% steps.split(/\|/).map do |step| %>
 			<Word><%= step.strip %></Word>
 			<% end %>
