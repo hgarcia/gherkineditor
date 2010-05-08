@@ -1,0 +1,24 @@
+using System.Collections.Generic;
+
+namespace GherkinEditor
+{
+    public class Languages : List<Language>
+    {
+        public Languages()
+        {
+            FillUpList();
+        }
+
+        private void FillUpList()
+        {
+        	<% langs.map do |lang| %>
+            Add(new Language("<%= lang.iso_code %>","<%= lang.keywords(:name)[0] %>","<%= lang.keywords(:native)[0] %>"));
+            <% end %>
+        }
+
+        public Language GetByIso(string isoCode)
+        {
+            return Find(l => l.IsoCode == isoCode) ?? new Language("en", "English", "English");
+        }        
+    }
+}

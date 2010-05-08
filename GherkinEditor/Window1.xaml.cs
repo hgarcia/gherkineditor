@@ -138,35 +138,13 @@ namespace GherkinEditor
 	    private void displayAutoComplete()
 	    {
 	        completionWindow = new CompletionWindow(textEditor.TextArea);
-	        IList<ICompletionData> data = completionWindow.CompletionList.CompletionData;
-	        loadCompletionData(data);
+	        var data = completionWindow.CompletionList.CompletionData;
+	        var completionDataLoader = new CompletionDataLoader();
+	        completionDataLoader.LoadDataInto(data,new Language("en","English","English"));
 	        completionWindow.Show();
 	        completionWindow.Closed += delegate {
 	                                                completionWindow = null;
 	        };
-	    }
-
-	    private void loadCompletionData(IList<ICompletionData> data)
-	    {
-            data.Add(new MyCompletionData("Scenario: "));
-			data.Add(new MyCompletionData("Feature: "));
-            data.Add(new MyCompletionData("Background: "));
-            data.Add(new MyCompletionData("Scenario Outline: "));
-            data.Add(new MyCompletionData("Examples: "));
-            data.Add(new MyCompletionData("In order to "));
-            data.Add(new MyCompletionData("As a "));
-            data.Add(new MyCompletionData("As an "));
-            data.Add(new MyCompletionData("Should "));
-            data.Add(new MyCompletionData("I want to "));
-            data.Add(new MyCompletionData("Given "));
-            data.Add(new MyCompletionData("When "));
-            data.Add(new MyCompletionData("Then "));
-            data.Add(new MyCompletionData("And "));
-            data.Add(new MyCompletionData("But "));
-            data.Add(new MyCompletionData("Or "));
-            data.Add(new MyCompletionData("name "));
-            data.Add(new MyCompletionData("encoding "));
-            data.Add(new MyCompletionData("native "));
 	    }
 
 	    void textEditor_TextArea_TextEntering(object sender, TextCompositionEventArgs e)

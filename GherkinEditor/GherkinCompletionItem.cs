@@ -26,9 +26,9 @@ namespace GherkinEditor
 	/// <summary>
 	/// Implements AvalonEdit ICompletionData interface to provide the entries in the completion drop down.
 	/// </summary>
-	public class MyCompletionData : ICompletionData
+	public class GherkinCompletionItem : ICompletionData
 	{
-		public MyCompletionData(string text)
+		public GherkinCompletionItem(string text)
 		{
 			this.Text = text;
 		}
