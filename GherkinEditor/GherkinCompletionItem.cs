@@ -28,6 +28,10 @@ namespace GherkinEditor
 	/// </summary>
 	public class GherkinCompletionItem : ICompletionData
 	{
+	    public GherkinCompletionItem(string text, string description) : this(text)
+	    {
+	        Description = description;
+	    }
 		public GherkinCompletionItem(string text)
 		{
 			this.Text = text;
@@ -43,12 +47,20 @@ namespace GherkinEditor
 		public object Content {
 			get { return this.Text; }
 		}
-		
-		public object Description {
-			get { return "Description for " + this.Text; }
+
+	    private object _description;
+		public object Description
+		{
+		    get
+		    {
+                if(_description == null)
+		            return "Description for " + this.Text;
+		        return _description;
+		    }
+		    private set { _description = value; }
 		}
-		
-		public void Complete(TextArea textArea, ISegment completionSegment, EventArgs insertionRequestEventArgs)
+
+	    public void Complete(TextArea textArea, ISegment completionSegment, EventArgs insertionRequestEventArgs)
 		{
 			textArea.Document.Replace(completionSegment, this.Text);
 		}

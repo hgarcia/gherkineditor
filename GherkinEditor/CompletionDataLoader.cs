@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ICSharpCode.AvalonEdit.CodeCompletion;
 using System.Linq;
@@ -672,6 +673,11 @@ namespace GherkinEditor
                 .ToList()
                 .ForEach(data.Add);
             data.OrderBy(x => x.Text);
+        }
+
+        public void LoadLanguages(IList<ICompletionData> data, Languages languages)
+        {
+            languages.ForEach(l=> data.Add(new GherkinCompletionItem(l.IsoCode, l.English)));
         }
     }
 }

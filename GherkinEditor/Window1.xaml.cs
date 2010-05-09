@@ -27,6 +27,7 @@ using System.Windows.Threading;
 using System.Xml;
 using ICSharpCode.AvalonEdit;
 using ICSharpCode.AvalonEdit.CodeCompletion;
+using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Folding;
 using ICSharpCode.AvalonEdit.Highlighting;
 using Microsoft.Win32;
@@ -38,6 +39,8 @@ namespace GherkinEditor
 	/// </summary>
 	public partial class Window1 : Window
 	{
+        private Languages _languages;  
+
 		public Window1()
 		{
 			// Load our custom highlighting definition
@@ -53,9 +56,7 @@ namespace GherkinEditor
 			// and register it in the HighlightingManager
 			HighlightingManager.Instance.RegisterHighlighting("Custom Highlighting", new string[] { ".cool" }, customHighlighting);
 			
-			InitializeComponent();
-			propertyGridComboBox.SelectedIndex = 2;
-			
+			InitializeComponent();			
 			textEditor.SyntaxHighlighting = customHighlighting;
 
 			textEditor.TextArea.TextEntering += textEditor_TextArea_TextEntering;
@@ -65,6 +66,8 @@ namespace GherkinEditor
 			foldingUpdateTimer.Interval = TimeSpan.FromSeconds(2);
 			foldingUpdateTimer.Tick += foldingUpdateTimer_Tick;
 			foldingUpdateTimer.Start();
+            _languages = new Languages();
+		    _completionDataLoader = new CompletionDataLoader();
 		}
 
 		string currentFileName;
@@ -93,24 +96,7 @@ namespace GherkinEditor
 			}
 			textEditor.Save(currentFileName);
 		}
-		
-		void propertyGridComboBoxSelectionChanged(object sender, RoutedEventArgs e)
-		{
-			if (propertyGrid == null)
-				return;
-			switch (propertyGridComboBox.SelectedIndex) {
-				case 0:
-					propertyGrid.SelectedObject = textEditor;
-					break;
-				case 1:
-					propertyGrid.SelectedObject = textEditor.TextArea;
-					break;
-				case 2:
-					propertyGrid.SelectedObject = textEditor.Options;
-					break;
-			}
-		}
-		
+				
 		CompletionWindow completionWindow;
 		
         protected override void  OnKeyDown(KeyEventArgs e)
@@ -124,8 +110,8 @@ namespace GherkinEditor
             {
                 prevKey = e.Key;
                 showAutoComplete = false;
+                base.OnKeyDown(e);
             }
-            base.OnKeyDown(e);
         }
 
 		void textEditor_TextArea_TextEntered(object sender, TextCompositionEventArgs e)
@@ -133,30 +119,56 @@ namespace GherkinEditor
 			if (showAutoComplete){
 				displayAutoComplete();
 			}
+		    showAutoComplete = false;
 		}
 
 	    private void displayAutoComplete()
 	    {
-	        completionWindow = new CompletionWindow(textEditor.TextArea);
-	        var data = completionWindow.CompletionList.CompletionData;
-	        var completionDataLoader = new CompletionDataLoader();
-	        completionDataLoader.LoadDataInto(data,new Language("en","English","English"));
+            completionWindow = new CompletionWindow(textEditor.TextArea);
+            var data = completionWindow.CompletionList.CompletionData;
+
+            if (textEditor.TextArea.Caret.Line == 1 && hasLanguageLine())
+            {
+                _completionDataLoader.LoadLanguages(data,_languages);
+            }else
+            {
+                var language = getLanguageToLoad();
+                _completionDataLoader.LoadDataInto(data, language); 
+            }
+
 	        completionWindow.Show();
 	        completionWindow.Closed += delegate {
 	                                                completionWindow = null;
 	        };
 	    }
 
+	    private bool hasLanguageLine()
+	    {
+            var line = textEditor.TextArea.Document.GetLineByNumber(1);
+            var firstLineText = line.Text.Trim().ToLower();
+	        return (firstLineText.StartsWith("#")
+	                && firstLineText.Contains("language")
+	                && firstLineText.Contains(":"));
+	    }
+
+	    private Language getLanguageToLoad()
+	    {
+            var isoCode = "en";
+            if (hasLanguageLine())
+                isoCode = textEditor.TextArea.Document.GetLineByNumber(1)
+                    .Text.Trim().ToLower().Split(':')[1].Trim();
+
+	        return _languages.Find(l => l.IsoCode == isoCode) 
+	                       ?? new Language("en", "English", "English");
+	    }
+
 	    void textEditor_TextArea_TextEntering(object sender, TextCompositionEventArgs e)
 		{
 			if (e.Text.Length > 0 && completionWindow != null) {
 				if (!char.IsLetterOrDigit(e.Text[0])) {
-					// Whenever a non-letter is typed while the completion window is open,
-					// insert the currently selected element.
 					completionWindow.CompletionList.RequestInsertion(e);
 				}
 			}
-			// do not set e.Handled=true - we still want to insert the character that was typed
 		}
 		
 		#region Folding
@@ -164,8 +176,9 @@ namespace GherkinEditor
 		AbstractFoldingStrategy foldingStrategy;
 	    private Key? prevKey;
 	    private bool showAutoComplete;
-		
-		void foldingUpdateTimer_Tick(object sender, EventArgs e)
+	    private CompletionDataLoader _completionDataLoader;
+
+	    void foldingUpdateTimer_Tick(object sender, EventArgs e)
 		{
 			if (foldingStrategy != null) {
 				foldingStrategy.UpdateFoldings(foldingManager, textEditor.Document);

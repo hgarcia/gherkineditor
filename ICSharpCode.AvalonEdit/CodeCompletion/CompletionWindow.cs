@@ -32,7 +32,8 @@ namespace ICSharpCode.AvalonEdit.CodeCompletion
 		public CompletionWindow(TextArea textArea) : base(textArea)
 		{
 			// keep height automatic
-			this.CloseAutomatically = true;
+            this.TextArea.Document.Remove(this.TextArea.Caret.Offset-1,1);
+            this.CloseAutomatically = true;
 			this.SizeToContent = SizeToContent.Height;
 			this.Width = 175;
 			this.Content = completionList;
