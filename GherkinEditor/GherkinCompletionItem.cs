@@ -23,9 +23,6 @@ using ICSharpCode.AvalonEdit.Editing;
 
 namespace GherkinEditor
 {
-	/// <summary>
-	/// Implements AvalonEdit ICompletionData interface to provide the entries in the completion drop down.
-	/// </summary>
 	public class GherkinCompletionItem : ICompletionData
 	{
 	    public GherkinCompletionItem(string text, string description) : this(text)
@@ -34,7 +31,7 @@ namespace GherkinEditor
 	    }
 		public GherkinCompletionItem(string text)
 		{
-			this.Text = text;
+			Text = text;
 		}
 		
 		public System.Windows.Media.ImageSource Image {
@@ -45,7 +42,7 @@ namespace GherkinEditor
 		
 		// Use this property if you want to show a fancy UIElement in the drop down list.
 		public object Content {
-			get { return this.Text; }
+			get { return Text; }
 		}
 
 	    private object _description;
@@ -54,7 +51,7 @@ namespace GherkinEditor
 		    get
 		    {
                 if(_description == null)
-		            return "Description for " + this.Text;
+		            return "Description for " + Text;
 		        return _description;
 		    }
 		    private set { _description = value; }
@@ -62,7 +59,7 @@ namespace GherkinEditor
 
 	    public void Complete(TextArea textArea, ISegment completionSegment, EventArgs insertionRequestEventArgs)
 		{
-			textArea.Document.Replace(completionSegment, this.Text);
+			textArea.Document.Replace(completionSegment, Text);
 		}
 	}
 }
