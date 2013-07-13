@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using ICSharpCode.AvalonEdit.CodeCompletion;
 using System.Linq;
@@ -18,7 +17,7 @@ namespace GherkinEditor
 
         private void LoadCompletionData()
         {
-        	_completionDataByLanguage =  new Dictionary<Language, IList<ICompletionData>>();
+        	_completionDataByLanguage = new Dictionary<Language, IList<ICompletionData>>();
         	
             _completionDataByLanguage.Add(_langs.GetByIso("ar"),new List<ICompletionData>
                                                         {

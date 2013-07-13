@@ -17,29 +17,21 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 using System.Xml;
-using ICSharpCode.AvalonEdit;
 using ICSharpCode.AvalonEdit.CodeCompletion;
-using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Folding;
 using ICSharpCode.AvalonEdit.Highlighting;
 using Microsoft.Win32;
 
 namespace GherkinEditor
 {
-	/// <summary>
-	/// Interaction logic for Window1.xaml
-	/// </summary>
-	public partial class Window1 : Window
+	public partial class Window1
 	{
-        private Languages _languages;  
+        private readonly Languages _languages;  
 
 		public Window1()
 		{
@@ -54,52 +46,48 @@ namespace GherkinEditor
 				}
 			}
 			// and register it in the HighlightingManager
-			HighlightingManager.Instance.RegisterHighlighting("Custom Highlighting", new string[] { ".cool" }, customHighlighting);
+			HighlightingManager.Instance.RegisterHighlighting("Custom Highlighting", new[] { ".feature" }, customHighlighting);
 			
 			InitializeComponent();			
 			textEditor.SyntaxHighlighting = customHighlighting;
 
-			textEditor.TextArea.TextEntering += textEditor_TextArea_TextEntering;
-			textEditor.TextArea.TextEntered += textEditor_TextArea_TextEntered;
+			textEditor.TextArea.TextEntering += Text_editor_text_area_text_entering;
+			textEditor.TextArea.TextEntered += Text_editor_text_area_text_entered;
 			
-			DispatcherTimer foldingUpdateTimer = new DispatcherTimer();
-			foldingUpdateTimer.Interval = TimeSpan.FromSeconds(2);
-			foldingUpdateTimer.Tick += foldingUpdateTimer_Tick;
+			var foldingUpdateTimer = new DispatcherTimer {Interval = TimeSpan.FromSeconds(2)};
+		    foldingUpdateTimer.Tick += Folding_update_timer_tick;
 			foldingUpdateTimer.Start();
             _languages = new Languages();
 		    _completionDataLoader = new CompletionDataLoader();
 		}
 
-		string currentFileName;
+		string _currentFileName;
 		
 		void openFileClick(object sender, RoutedEventArgs e)
 		{
-			OpenFileDialog dlg = new OpenFileDialog();
-			dlg.CheckFileExists = true;
-			if (dlg.ShowDialog() ?? false) {
-				currentFileName = dlg.FileName;
-				textEditor.Load(currentFileName);
-				textEditor.SyntaxHighlighting = HighlightingManager.Instance.GetDefinitionByExtension(Path.GetExtension(currentFileName));
-			}
+			var dlg = new OpenFileDialog {CheckFileExists = true};
+		    if (!((bool) dlg.ShowDialog())) return;
+		    _currentFileName = dlg.FileName;
+		    textEditor.Load(_currentFileName);
+		    textEditor.SyntaxHighlighting = HighlightingManager.Instance.GetDefinitionByExtension(Path.GetExtension(_currentFileName));
 		}
 		
 		void saveFileClick(object sender, EventArgs e)
 		{
-			if (currentFileName == null) {
-				SaveFileDialog dlg = new SaveFileDialog();
-				dlg.DefaultExt = ".txt";
-				if (dlg.ShowDialog() ?? false) {
-					currentFileName = dlg.FileName;
+			if (_currentFileName == null) {
+				var dlg = new SaveFileDialog {DefaultExt = ".txt"};
+			    if ((bool) dlg.ShowDialog()) {
+					_currentFileName = dlg.FileName;
 				} else {
 					return;
 				}
 			}
-			textEditor.Save(currentFileName);
+			textEditor.Save(_currentFileName);
 		}
 				
-		CompletionWindow completionWindow;
+		CompletionWindow _completionWindow;
 		
-        protected override void  OnKeyDown(KeyEventArgs e)
+        protected override void OnKeyDown(KeyEventArgs e)
         {
             if (prevKey == Key.LeftCtrl && e.Key == Key.Space)
             {
@@ -114,7 +102,7 @@ namespace GherkinEditor
             }
         }
 
-		void textEditor_TextArea_TextEntered(object sender, TextCompositionEventArgs e)
+	    void Text_editor_text_area_text_entered(object sender, TextCompositionEventArgs e)
 		{
 			if (showAutoComplete){
 				displayAutoComplete();
@@ -124,8 +112,8 @@ namespace GherkinEditor
 
 	    private void displayAutoComplete()
 	    {
-            completionWindow = new CompletionWindow(textEditor.TextArea);
-            var data = completionWindow.CompletionList.CompletionData;
+            _completionWindow = new CompletionWindow(textEditor.TextArea);
+            var data = _completionWindow.CompletionList.CompletionData;
 
             if (textEditor.TextArea.Caret.Line == 1 && hasLanguageLine())
             {
@@ -136,49 +124,58 @@ namespace GherkinEditor
                 _completionDataLoader.LoadDataInto(data, language); 
             }
 
-	        completionWindow.Show();
-	        completionWindow.Closed += delegate {
-	                                                completionWindow = null;
-	        };
+	        _completionWindow.Show();
+	        _completionWindow.Closed += delegate { _completionWindow = null;};
 	    }
 
 	    private bool hasLanguageLine()
 	    {
-            var line = textEditor.TextArea.Document.GetLineByNumber(1);
-            var firstLineText = line.Text.Trim().ToLower();
-	        return (firstLineText.StartsWith("#")
-	                && firstLineText.Contains("language")
-	                && firstLineText.Contains(":"));
+            var line = getLineText(1).Trim().ToLower();
+            return (line.StartsWith("#")
+                    && line.Contains("language")
+                    && line.Contains(":"));
 	    }
+
+        private string getDocumentIsoCode()
+        {
+            if (hasLanguageLine())
+            {
+                var line = getLineText(1).Trim().ToLower();
+                return line.Split(':')[1].Trim();
+            }
+            return "en";
+        }
 
 	    private Language getLanguageToLoad()
 	    {
-            var isoCode = "en";
-            if (hasLanguageLine())
-                isoCode = textEditor.TextArea.Document.GetLineByNumber(1)
-                    .Text.Trim().ToLower().Split(':')[1].Trim();
-
+	        var isoCode = getDocumentIsoCode();
 	        return _languages.Find(l => l.IsoCode == isoCode) 
 	                       ?? new Language("en", "English", "English");
 	    }
 
-	    void textEditor_TextArea_TextEntering(object sender, TextCompositionEventArgs e)
-		{
-			if (e.Text.Length > 0 && completionWindow != null) {
-				if (!char.IsLetterOrDigit(e.Text[0])) {
-					completionWindow.CompletionList.RequestInsertion(e);
-				}
-			}
-		}
-		
-		#region Folding
+        private string getLineText(int lineNumber)
+        {
+            var document = textEditor.TextArea.Document;
+            var line = document.GetLineByNumber(lineNumber);
+            return document.GetText(line);
+        }
+
+	    void Text_editor_text_area_text_entering(object sender, TextCompositionEventArgs e)
+	    {
+	        if (e.Text.Length <= 0 || _completionWindow == null) return;
+	        if (!char.IsLetterOrDigit(e.Text[0])) {
+	            _completionWindow.CompletionList.RequestInsertion(e);
+	        }
+	    }
+
+	    #region Folding
 		FoldingManager foldingManager;
 		AbstractFoldingStrategy foldingStrategy;
 	    private Key? prevKey;
 	    private bool showAutoComplete;
-	    private CompletionDataLoader _completionDataLoader;
+	    private readonly CompletionDataLoader _completionDataLoader;
 
-	    void foldingUpdateTimer_Tick(object sender, EventArgs e)
+	    void Folding_update_timer_tick(object sender, EventArgs e)
 		{
 			if (foldingStrategy != null) {
 				foldingStrategy.UpdateFoldings(foldingManager, textEditor.Document);
